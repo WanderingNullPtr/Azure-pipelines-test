@@ -30,7 +30,7 @@ jobs:
   
     - script: python3 -m pip install --upgrade Pillow
       displayName: Pillow install
-    - powershell: 'C:\Windows\System32\dxdiag.exe'
+    - powershell: 'C:\Windows\System32\dxdiag.exe /whql:off'
   #  - script: C:\enigma-dev\test-game.exe
     - script: python3 ./dxdiagscreenshot.py C:\dxtest1.png 0 0 1300 800
       displayName: Capture dxdiag
