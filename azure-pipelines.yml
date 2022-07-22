@@ -30,7 +30,7 @@ jobs:
   
     - script: python3 -m pip install --upgrade Pillow
       displayName: Pillow install
-    - powershell: 'C:\Windows\System32\dxdiag.exe /whql:off'
+    - powershell: 'C:\Windows\System32\dxdiag.exe /whql:off /t 'C:\dxdiagout.txt''
   #  - script: C:\enigma-dev\test-game.exe
     - script: python3 ./dxdiagscreenshot.py C:\dxtest1.png 0 0 1300 800
       displayName: Capture dxdiag
@@ -58,3 +58,8 @@ jobs:
       inputs:
         pathtoPublish: 'C:\dxtest1.png'
         artifactName: 'dxCapturePngs'
+    - task: PublishBuildArtifacts@1
+      displayName: Publish dxdiagout
+      inputs:
+        pathtoPublish: 'C:\dxdiagout.txt'
+        artifactName: 'dxdiag output'
