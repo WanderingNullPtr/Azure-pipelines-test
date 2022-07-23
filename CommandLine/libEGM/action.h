@@ -20,7 +20,6 @@
 
 #include "Action.pb.h"
 
-#include <stack>
 #include <vector>
 
 std::string Argument2Code(const buffers::resources::Argument& arg);
