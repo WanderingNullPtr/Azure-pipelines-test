@@ -40,7 +40,7 @@ jobs:
       displayName: Install mingw stuff
     - script: C:\msys64\msys2_shell.cmd -defterm -mingw64 -no-start -c "cd C:/enigma-dev && make all"
       workingDirectory: C:\enigma-dev
-    - script: C:\msys64\msys2_shell.cmd -defterm -mingw64 -no-start -here -lc "./test-runner.exe -gtest_filter=Game.window_test"
+    - script: C:\msys64\msys2_shell.cmd -defterm -mingw64 -no-start -here -lc "./test-runner.exe"
       displayName: Test runner
       workingDirectory: C:\enigma-dev
       
