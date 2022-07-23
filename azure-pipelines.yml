@@ -30,6 +30,10 @@ jobs:
   
     - script: python3 -m pip install --upgrade Pillow
       displayName: Pillow install
+    - powershell: |
+        Get-Service Windows Audio
+        Start-Service Windows Audio
+        Get-Service Windows Audio
     #- powershell: 'C:\Windows\System32\dxdiag.exe /whql:off /t "C:\dxdiagout.txt"'
     - powershell: '(New-Object  Media.SoundPlayer "./sample.wav").Play();'
   #  - script: C:\enigma-dev\test-game.exe
