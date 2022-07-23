@@ -192,7 +192,7 @@ class Win32_TestHarness final: public TestHarness {
     gather_coverage(test_config);
   }
 
-private:
+ private:
   PROCESS_INFORMATION process_info;
   HWND window_handle;
   bool run_lcov;
@@ -218,7 +218,7 @@ int build_game(const string &game, const TestConfig &tc, const string &out) {
   string collision = " --collision=" + tc.get_or(&TC::collision, "Precise");
   string extensions = " --extensions="
       + tc.get_or(&TC::extensions, kDefaultExtensions);
-
+//kkk
   string args = emake_cmd + compiler + mode + platform + graphics + audio + widgets + network + collision + extensions +
                 " \"" + game + "\" -o \"" + out + "\" ";
 
@@ -247,9 +247,8 @@ void gather_coverage(const TestConfig &config) {
   if (!config_supports_lcov(config)) {
     return;
   }
-
-  //char localappdata_path[MAX_PATH];
-  //GetEnvironmentVariable("LOCALAPPDATA",localappdata_path,MAX_PATH);
+  char localappdata_path[MAX_PATH];
+  GetEnvironmentVariable("LOCALAPPDATA",localappdata_path,MAX_PATH);
 
   string src_dir = "--directory=$LOCALAPPDATA/ENIGMA/.eobjs/Windows/Windows/TestHarness/"
                  + config.get_or(&TestConfig::mode, "Debug") + "/";
@@ -318,7 +317,6 @@ TestHarness::launch_and_attach(const string &game, const TestConfig &tc) {
 
   ProcessData lacProcess(true);
   if(!CreateProcess(out.c_str(),&out[0],NULL,NULL,FALSE,0,NULL,NULL,&lacProcess.si,&lacProcess.pi)){
-        std::cerr<<"Failed to launch";
         return nullptr;
   }
   Sleep(5000); // Give the window a 5 seconds to load and display.
@@ -327,13 +325,12 @@ TestHarness::launch_and_attach(const string &game, const TestConfig &tc) {
     HWND win = find_window_by_pid(lacProcess.pi.dwProcessId);
     unsigned long int pid;
     GetWindowThreadProcessId(win,&pid);
-    if (pid==lacProcess.pi.dwProcessId){
+    if (pid==lacProcess.pi.dwProcessId)
           return std::unique_ptr<Win32_TestHarness>(
           new Win32_TestHarness(lacProcess.pi, win, tc));
-    };
     Sleep(250);
   }
-  std::cerr<<"Did not get window";
+
   return nullptr;
 }
 
