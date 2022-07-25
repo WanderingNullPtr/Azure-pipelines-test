@@ -1,8 +1,0 @@
-syntax = "proto2";
-package buffers;
-
-import "treenode.proto";
-
-message Game {
-  optional TreeNode root = 1;
-}
