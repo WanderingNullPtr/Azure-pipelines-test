@@ -39,6 +39,7 @@ jobs:
     - powershell: |
         Get-Service 'Windows Audio'
         dxdiag /whql:off /t C:\dxout.txt
+        StartSleep -Seconds 10
       displayName: Install mingw stuff
     - task: PublishBuildArtifacts@1
       inputs:
