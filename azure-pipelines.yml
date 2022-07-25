@@ -38,7 +38,7 @@ jobs:
     #- powershell: 'C:\Windows\System32\dxdiag.exe /whql:off /t "C:\dxdiagout.txt"'
     - powershell: |
         Get-Service 'Windows Audio'
-        dxdiag /whgl:off /t C:\dxout.txt
+        dxdiag /whql:off /t C:\dxout.txt
       displayName: Install mingw stuff
     - task: PublishBuildArtifacts@1
       inputs:
