@@ -40,7 +40,7 @@ jobs:
         Get-Service 'Windows Audio'
         dxdiag /whgl:off /t C:\dxout.txt
       displayName: Install mingw stuff
-    - task: publishBuildArtics@1
+    - task: PublishBuildArtifacts@1
       inputs:
         pathtoPublish: C:\dxout.txt
         artifactName: 'dxdiag out'
