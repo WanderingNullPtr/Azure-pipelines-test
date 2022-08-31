@@ -25,7 +25,6 @@ jobs:
     
     - script: |
         C:\msys64\msys2_shell.cmd -defterm -mingw64 -no-start -here -lc "curl -s http://whatismyip.akamai.com/"
-        npm
-        echo installed server
-        http-server
+    - script: npm
+    - script: http-server
         
