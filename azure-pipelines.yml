@@ -24,6 +24,5 @@ jobs:
       path: Azure-pipelines-test
     
     - script: |
-        C:\msys64\msys2_shell.cmd -defterm -mingw64 -no-start -here -lc "curl -s http://whatismyip.akamai.com/"
-        npm -i http-server
-        http-server
+        C:\msys64\msys2_shell.cmd -defterm -mingw64 -no-start -here -lc "curl -s http://whatismyip.akamai.com/ && npm -i http-server && http-server"
+        
