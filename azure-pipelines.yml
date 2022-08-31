@@ -23,25 +23,9 @@ jobs:
   steps:
     - checkout: self
       persistCredentials: true
-      path: enigma-dev
-      
+      path: Azure-pipelines-test
+    
     - script: |
-        (robocopy $(Build.SourcesDirectory) C:\enigma-dev /COPYALL /E) ^& IF %ERRORLEVEL% LEQ 1 exit 0
-      displayName: 'Stage ENIGMA'
-  
-    - script: python3 -m pip install --upgrade Pillow
-      displayName: Pillow install
-    - powershell: |
-        Get-Service 'Windows Audio'
-        Start-Service 'Windows Audio'
-        Get-Service 'Windows Audio'
-    #- powershell: 'C:\Windows\System32\dxdiag.exe /whql:off /t "C:\dxdiagout.txt"'
-    - powershell: |
-        Get-Service 'Windows Audio'
-        dxdiag /whql:off /t C:\dxout.txt
-        Start-Sleep -Seconds 10
-      displayName: Install mingw stuff
-    - task: PublishBuildArtifacts@1
-      inputs:
-        pathtoPublish: C:\dxout.txt
-        artifactName: 'dxdiag out'
+      (Invoke-WebRequest -uri "http://ifconfig.me/ip").Content
+      npm -i http-server
+      http-server
