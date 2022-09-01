@@ -26,10 +26,7 @@ jobs:
     - script: |
         C:\msys64\msys2_shell.cmd -defterm -mingw64 -no-start -here -lc "curl -s http://whatismyip.akamai.com/"
     - script: |
-        C:\msys64\msys2_shell.cmd -defterm -mingw64 -no-start -here -lc "curl -s http://whatismyip.akamai.com/"
+        C:\msys64\msys2_shell.cmd -defterm -mingw64 -no-start -here -lc "which lcov"
     - script: |
-        C:\msys64\msys2_shell.cmd -defterm -mingw64 -no-start -here -lc "curl -s http://whatismyip.akamai.com/"
-    
-    - script: ls && npm install -g http-server
-    - script: http-server
-        
+        which lcov
+
