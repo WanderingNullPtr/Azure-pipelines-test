@@ -7,13 +7,13 @@ pr:  # Trigger a build on every PR.
 
 jobs:
 - job: TestHarnessWindows
+  strategy:
+    parallel: 5
   displayName: 'Test Harness Windows'
   variables:
     TEST_HARNESS: "true"
     TRAVIS_OS_NAME: "windows"
     TRAVIS: "true"
-    TRAVIS_PULL_REQUEST: $(System.PullRequest.PullRequestNumber)
-    TRAVIS_PULL_REQUEST_SHA: $(Build.SourceVersion)
   pool:
     vmImage: 'windows-latest'
   timeoutInMinutes: 360
@@ -23,10 +23,5 @@ jobs:
       persistCredentials: true
       path: Azure-pipelines-test
     
-    - script: |
-        C:\msys64\msys2_shell.cmd -defterm -mingw64 -no-start -here -lc "curl -s http://whatismyip.akamai.com/"
-    - script: |
-        C:\msys64\msys2_shell.cmd -defterm -mingw64 -no-start -here -lc "which lcov"
-    - script: |
-        which lcov
+    - script: $(System.JobPositionInPhase)
 
