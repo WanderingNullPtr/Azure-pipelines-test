@@ -26,9 +26,9 @@ jobs:
       path: Azure-pipelines-test
     
     - bash: |
-      mkdir artfct
-      echo $AGENT_N > art${AGENT_N}.txt
-      mv art${AGENT_N}.txt artfct\
+        mkdir artfct
+        echo $AGENT_N > art${AGENT_N}.txt
+        mv art${AGENT_N}.txt artfct\
     - task: PublishBuildArtifacts@1
       displayName: 'Push Build Artifacts'
       inputs:
