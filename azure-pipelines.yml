@@ -14,7 +14,8 @@ jobs:
     TEST_HARNESS: "true"
     TRAVIS_OS_NAME: "windows"
     TRAVIS: "true"
-    AGENT: $(System.JobPositionInPhase)
+    AGENT_N: $(System.JobPositionInPhase)
+    TOTAL_AGENTS: $(System.TotalJobsInPhase)
   pool:
     vmImage: 'windows-latest'
   timeoutInMinutes: 360
@@ -24,5 +25,13 @@ jobs:
       persistCredentials: true
       path: Azure-pipelines-test
     
-    - bash: echo "$AGENT"
+    - bash: |
+      mkdir artfct
+      echo $AGENT_N > art${AGENT_N}.txt
+      mv art${AGENT_N}.txt artfct\
+    - task: PublishBuildArtifacts@1
+      displayName: 'Push Build Artifacts'
+      inputs:
+        pathtoPublish: 'artfct\'
+      condition: always()
 
